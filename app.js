@@ -1,12 +1,9 @@
-const Koa = require('koa');
-const Router = require('koa-router');
+const Koa = require("koa");
+const InitManager = require("./core/init");
+const parser = require("koa-bodyparser");
+
 const app = new Koa();
-const router = new Router();
-
-router.get('/ljj', (ctx, next) => {
-    ctx.body = {name:'ljj'}
-});
-
-app.use(router.routes());
+app.use(parser());
+InitManager.initCore(app);
 
 app.listen(3000);
